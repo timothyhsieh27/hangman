@@ -9,6 +9,15 @@ difficult_array = []
 puts "Please type 'Easy', 'Normal', or 'Difficult' to select the difficulty of your mystery word: "
 game_choice = gets.chomp.downcase
 
+loop do
+  if game_choice != "easy" && game_choice != "normal" && game_choice != "difficult"
+    puts "Invalid input, please enter your choice precisely: "
+    game_choice = gets.chomp.downcase
+  else
+    break
+  end
+end
+
 def store_sort_words(all_words, choice, word, all_easy, all_normal, all_difficult)
   if choice == "easy"
     all_words.each do |word|
@@ -31,6 +40,11 @@ def store_sort_words(all_words, choice, word, all_easy, all_normal, all_difficul
   end
 end
 #based on the user's answer in line 9, creates a bank of possible answer choices of the appropriate length in the appropriate array.
+
+# def select_answer()
+#   if choice == "easy"
+#     answer = all_easy.sample
+#     puts "Your word is #{answer.length}"
 
 a_word = new_dict.each #ask how I did this.
 
