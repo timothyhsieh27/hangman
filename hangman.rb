@@ -68,32 +68,27 @@ def input_error(guess, letters)
     end
 end
 
-# def guess_counter(guess, mys_array, counter)
-#   if mys_array.include?(guess)
-#     puts "Your guess was correct."
-#   elsif !mys_array.include?(guess)
-#     counter += 1
-#     puts "Your guess was incorrect. You have #{8 - counter} turns remaining."
-#   end
-# end
-
 def guesses_show_right_and_wrong(guess, mys_array, letter, dis_array, showletter, counter)
-  until mys_array == dis_array || counter == 0
+  while mys_array.each != dis_array.each || wrong_guesses != 0
     if mys_array.include?(guess)
       puts "Your guess was correct."
       mys_array.each do |letter|
         if letter == guess
           dis_array.map {|showletter| showletter = guess}
+          break
         else
           dis_array.map {|showletter| showletter = "_" }
+          break
         end
       end
+      break
     elsif !mys_array.include?(guess)
       counter += 1
-      puts "Your guess was incorrect. You have #{8 - counter} turns remaining."
+      puts "Your guess was incorrect. You have #{counter} turns remaining."
+      break
     end
-    p dis_array
   end
+  p dis_array
 end
 
 easy_array = []
@@ -101,7 +96,7 @@ normal_array = []
 difficult_array = []
 
 letters_array = ('a'..'z').to_a
-mystery =   #this is a string
+mystery = []  #this is a string
 mystery_array = [] #this is an array made of each string's split letters
 display_array = []
 
@@ -117,9 +112,10 @@ wrong_guesses = 0
 store_sort_words(new_dict, game_choice, a_word, easy_array, normal_array, difficult_array)
 select_answer(game_choice, mystery, easy_array, normal_array, difficult_array, mystery_array)
 input_error(user_guess, letters_array)
-# guess_counter(user_guess, mystery_array, wrong_guesses)
 guesses_show_right_and_wrong(user_guess, mystery_array, mystery_letter, display_array, display_letter, wrong_guesses)
 
+
+# guess_counter(user_guess, mystery_array, wrong_guesses)
 # p easy_array
 # p normal_array
 # p difficult_array
