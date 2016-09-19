@@ -1,4 +1,3 @@
-
 old_dict = File.readlines "/usr/share/dict/words"
 new_dict = old_dict.map do |x| x.downcase.chomp end
 
@@ -64,16 +63,16 @@ x = 0
   x += 1
 end
   until mys_array == dis_array ||counter == 0
-    puts "Guess a new letter: "
+    puts "Guess a letter to reveal the mystery word: "
     guess = gets.chomp
     if guess.length > 1 || !letters.include?(guess) || guess.length < 1
-      puts "Input error: please type one letter. You may not type in non-letters. Please try again: "
+      puts "Input error: Please only type one letter. You may not type non-letters. Please, try again: "
     elsif guesses.include?(guess)
-      puts "Input error: you have already guessed that letter!"
+      puts "Input error: You've already guessed that letter! Dont worry, I account for repititous letter occurences."
     elsif guess.length == 1 && letters.include?(guess) && !guesses.include?(guess)
-      puts "Analyzing guess..."
+      puts "Analyzing user guess..."
       if mys_array.include?(guess)
-        puts "Your guess was correct."
+        puts "WOW! Your guess was correct!"
         guesses << guess
         i = 0
         mys_array.each do |letter|
@@ -82,14 +81,14 @@ end
             end
           i += 1
         end
-        puts "Your word is #{dis_array}"
+        puts "The mystery word is #{dis_array}"
       elsif mys_array.include?(guess) == false
         counter -= 1
-        puts "Your guess was incorrect. You have #{counter} turns remaining."
-        puts "Your word is #{dis_array}"
+        puts "Sorry, the mystery word doesnt contain #{guess}. You have #{counter} turns remaining."
+        puts "This is the mystery word: #{dis_array}"
         guesses << guess
       end
-      puts "Letters guessed: #{guesses}. "
+      puts "All user guesses: #{guesses}. "
     end
   end
 end
@@ -121,16 +120,16 @@ wrong_guesses = 8
 store_sort_words(new_dict, game_choice, a_word, easy_array, normal_array, difficult_array)
 if game_choice == "easy"
   emystery = easy_array.sample
-  puts "Your word is #{emystery.length} letters long."
+  puts "The mystery word is #{emystery.length} letters long."
   mystery_array = emystery.split("")
 elsif game_choice == "normal"
   nmystery = normal_array.sample
-  puts "Your word is #{nmystery.length} letters long."
+  puts "The mystery word is #{nmystery.length} letters long."
   mystery_array = nmystery.split("")
 elsif game_choice == "difficult"
   dmystery = difficult_array.sample
-  puts "Your word is #{dmystery.length} letters long."
+  puts "The mystery word is #{dmystery.length} letters long."
   mystery_array = dmystery.split("")
 end
 guesses_show_right_and_wrong(user_guess, letters_array, mystery_array, mystery_letter, display_array, display_letter, wrong_guesses, guesses_array)
-puts "Game Over."
+puts "Game Over!"
